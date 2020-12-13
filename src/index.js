@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { DataProvider, createDataClient } from 'react-isomorphic-data';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const dataClient = createDataClient({
+  initialCache: {},
+  ssr: false,
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DataProvider client={dataClient}>
+      <App />
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
